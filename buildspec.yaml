@@ -5,17 +5,23 @@ phases:
     runtime-versions:
       python: 3.11
     commands:
-      - echo Installing dependencies...
+      - echo "Installing dependencies..."
       - pip install -r requirements.txt
 
   build:
     commands:
-      - echo Running app build tasks...
+      - echo "Running app build tasks..."
       - python -m py_compile app.py
 
   post_build:
     commands:
-      - echo Post-build: Copying files to EC2 and starting app...
-      # Replace the below with your actual EC2 connection details
-      - scp -i chennapragada.pem -o StrictHostKeyChecking=no -r * ec2-user@75.101.223.156:/home/ec2-user/weather-app
-      - ssh -i chennapragada.pem -o StrictHostKeyChecking=no ec2-user@75.101.223.156 'cd /home/ec2-user/weather-app && nohup python3 app.py > log.txt 2>&1 &'
+      - echo "Post-build: Copying files to EC2 and starting app..."
+      - |
+        scp -i chennapragada.pem -o StrictHostKeyChecking=no -r * ec2-user@75.101.223.156:/home/ec2-user/weather-app
+      - |
+        ssh -i chennapragada.pem -o StrictHostKeyChecking=no ec2-user@75.101.223.156 'cd /home/ec2-user/weather-app && nohup python3 app.py > log.txt 2>&1 &'
+
+artifacts:
+  files:
+    - '**/*'
+
