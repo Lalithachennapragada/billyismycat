@@ -1,0 +1,6 @@
+Django==4.0.3  # Django version (make sure to use the version you're working with)
+djangorestframework==3.13.1  # If you're using DRF for building APIs
+requests==2.26.0  # For making API calls to fetch weather data
+python-dotenv==0.19.2  # For loading environment variables like API keys
+gunicorn==20.1.0  # WSGI server for production (optional for development)
+psycopg2==2.9.3  # If you're using PostgreSQL for your database
