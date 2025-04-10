@@ -11,7 +11,7 @@ phases:
   build:
     commands:
       - echo "Running app build tasks..."
-      - python -m py_compile app.py
+      - python -m py_compile prediction/forecast/apps.py
 
   post_build:
     commands:
