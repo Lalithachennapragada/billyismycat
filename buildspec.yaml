@@ -16,12 +16,9 @@ phases:
   post_build:
     commands:
       - echo "Post-build: Copying files to EC2 and starting app..."
-      - |
-        scp -i chennapragada.pem -o StrictHostKeyChecking=no -r * ec2-user@75.101.223.156:/home/ec2-user/weather-app
-      - |
-        ssh -i chennapragada.pem -o StrictHostKeyChecking=no ec2-user@75.101.223.156 'cd /home/ec2-user/weather-app && nohup python3 app.py > log.txt 2>&1 &'
+      - scp -i chennapragada.pem -o StrictHostKeyChecking=no -r * ec2-user@54.234.4.68:/home/ec2-user/
+      - ssh -i chennapragada.pem -o StrictHostKeyChecking=no ec2-user@54.234.4.68 "cd /home/ec2-user/ && nohup python3 app.py > log.txt 2>&1 &"
 
 artifacts:
   files:
     - '**/*'
-
